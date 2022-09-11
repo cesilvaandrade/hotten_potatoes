@@ -1,12 +1,15 @@
 package com.example.bd_unb.services;
 
 import com.example.bd_unb.domain.Ator;
+import com.example.bd_unb.domain.Filme;
 import com.example.bd_unb.repositories.AtorRepository;
+import com.example.bd_unb.repositories.FilmeRepository;
 import com.example.bd_unb.services.exceptions.ObjectNotFoundExcpetion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,11 +21,12 @@ public class AtorService {
     private AtorRepository repository;
 
     @Autowired
-    FilmeService filmeService;
+    private FilmeRepository filmeRepository;
 
+    public Ator insert( Ator obj , Integer idFilme) {
 
-    public Ator insert( Ator obj) {
-        System.out.println(obj.getFilmes());
+        Filme filme = filmeRepository.findById(idFilme).orElse(null);
+
 
         Ator newObj = Ator.builder()
                 .altura(obj.getAltura())
@@ -31,9 +35,14 @@ public class AtorService {
                 .naturalidade(obj.getNaturalidade())
                 .nome(obj.getNome())
                 .biografia(obj.getBiografia())
-                .filmes(obj.getFilmes().stream().map(filme -> filmeService.findById(filme.getId())).collect(Collectors.toList()))
+                .filmes(new ArrayList<>())
                 .build();
-        return repository.save(newObj);
+
+        newObj.getFilmes().add(filme);
+        Ator ator = repository.save(newObj);
+
+        return ator;
+
     }
 
     public List<Ator> findAll() {

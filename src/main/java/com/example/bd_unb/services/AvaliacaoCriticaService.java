@@ -2,6 +2,8 @@ package com.example.bd_unb.services;
 
 import com.example.bd_unb.domain.AvaliacaoCritica;
 import com.example.bd_unb.repositories.AvaliacaoCriticaRepository;
+import com.example.bd_unb.repositories.CriticoRepository;
+import com.example.bd_unb.repositories.FilmeRepository;
 import com.example.bd_unb.services.exceptions.ObjectNotFoundExcpetion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -17,12 +19,21 @@ public class AvaliacaoCriticaService {
     @Autowired
     private AvaliacaoCriticaRepository repository;
 
+    @Autowired
+    private FilmeRepository filmeRepository;
 
-    public AvaliacaoCritica insert(AvaliacaoCritica obj) {
+    @Autowired
+    private CriticoRepository criticoRepository;
+
+
+    public AvaliacaoCritica insert(AvaliacaoCritica obj, Integer idFilme) {
+
         AvaliacaoCritica newObj = AvaliacaoCritica.builder()
                 .descricao(obj.getDescricao())
                 .nota(obj.getNota())
                 .revista(obj.getRevista())
+                .filme(filmeRepository.findById(idFilme).orElse(null))
+                .critico(obj.getCritico() == null ? null : criticoRepository.findById(obj.getCritico().getId()).orElse(null))
                 .build();
         return repository.save(newObj);
     }
@@ -50,12 +61,14 @@ public class AvaliacaoCriticaService {
     }
 
     public AvaliacaoCritica update(Integer id, AvaliacaoCritica obj) {
-        obj.setId(id);
+        AvaliacaoCritica avaliacaoCritica = repository.findById(id).orElse(null);
         AvaliacaoCritica newObj = AvaliacaoCritica.builder()
                 .id(id)
                 .descricao(obj.getDescricao())
                 .nota(obj.getNota())
                 .revista(obj.getRevista())
+                .filme(avaliacaoCritica.getFilme())
+                .critico(avaliacaoCritica.getCritico())
                 .build();
         return repository.save(newObj);
     }

@@ -1,6 +1,7 @@
 package com.example.bd_unb.domain;
 
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,17 +38,18 @@ public class Filme implements Serializable {
 
     private String bilheteria;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="ID_DIRETOR", nullable=false)
     private Diretor diretor ;
 
     @OneToMany(mappedBy = "filme")
     private List<AvaliacaoCritica> avaliacaoCriticas = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "filmes")
+
+    @ManyToMany(mappedBy = "filmes", cascade = CascadeType.ALL)
     private List<Ator> atores = new ArrayList();
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="ID_ESTUDIO", nullable=false)
     private Estudio estudio;
 

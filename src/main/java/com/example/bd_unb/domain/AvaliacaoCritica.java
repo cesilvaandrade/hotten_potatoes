@@ -1,5 +1,6 @@
 package com.example.bd_unb.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class AvaliacaoCritica implements Serializable {
     @OneToOne(mappedBy = "avaliacao")
     private Critico critico;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="ID_FILME", nullable=false)
     private Filme filme;

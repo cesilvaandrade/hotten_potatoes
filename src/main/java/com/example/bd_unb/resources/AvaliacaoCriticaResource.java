@@ -1,7 +1,7 @@
 package com.example.bd_unb.resources;
 
-import com.example.bd_unb.domain.Ator;
-import com.example.bd_unb.services.AtorService;
+import com.example.bd_unb.domain.AvaliacaoCritica;
+import com.example.bd_unb.services.AvaliacaoCriticaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,40 +10,40 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/ator")
+@RequestMapping(value = "/api/avaliacao-critica")
 @CrossOrigin("*")
-public class AtorResource {
-
+public class AvaliacaoCriticaResource {
     @Autowired
-    private AtorService service;
+    private AvaliacaoCriticaService service;
 
     @PostMapping(value = "/filme/{idFilme}")
-    public ResponseEntity<Ator> insert( @Valid @RequestBody Ator obj ,@PathVariable Integer idFilme) {
-        Ator newObj = service.insert( obj , idFilme);
+    public ResponseEntity<AvaliacaoCritica> insert(@Valid @RequestBody AvaliacaoCritica obj , @PathVariable Integer idFilme) {
+        AvaliacaoCritica newObj = service.insert( obj, idFilme );
         return ResponseEntity.ok().body(newObj);
     }
 
 //    @GetMapping(value = "/{id}")
-//    public ResponseEntity<List<Ator>> findByFilme(@PathVariable Integer id) {
+//    public ResponseEntity<List<AvaliacaoCritica>> findByFilme(@PathVariable Integer id) {
 //        return ResponseEntity.ok().body(service.findByFilmes(id));
 //    }
 
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Ator> deleteById(@PathVariable Integer id) {
+    public ResponseEntity<AvaliacaoCritica> deleteById(@PathVariable Integer id) {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Ator> updatePost(@PathVariable Integer id, @RequestBody Ator obj) {
+    public ResponseEntity<AvaliacaoCritica> updatePost(@PathVariable Integer id, @RequestBody AvaliacaoCritica obj) {
         return ResponseEntity.ok().body(service.update(id, obj));
     }
 
     @GetMapping(value = "")
-    public ResponseEntity<List<Ator>> findAll(){
+    public ResponseEntity<List<AvaliacaoCritica>> findAll(){
         return ResponseEntity.ok().body(service.findAll());
     }
-    
+
 }
+
