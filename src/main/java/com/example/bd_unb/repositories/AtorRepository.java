@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface AtorRepository extends JpaRepository<Ator, Integer> {
 
-   List<Ator> findByFilmes(Integer id);
+//   List<Ator> findByFilme(Integer id);
 
 
 

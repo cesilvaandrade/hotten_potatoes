@@ -1,6 +1,6 @@
 package com.example.bd_unb.domain;
 
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,10 +9,11 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Builder
 @Getter
-@NamedQueries({
-//        @NamedQuery(name = "Category.buscaById", query = "select c from Category c where c.id = :id")
-})
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Filme implements Serializable {
 
     private static final long serialVersionUID = 1L;

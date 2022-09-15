@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AtorService {
@@ -16,8 +17,13 @@ public class AtorService {
     @Autowired
     private AtorRepository repository;
 
+    @Autowired
+    FilmeService filmeService;
+
 
     public Ator insert( Ator obj) {
+        System.out.println(obj.getFilmes());
+
         Ator newObj = Ator.builder()
                 .altura(obj.getAltura())
                 .aniversario(obj.getAniversario())
@@ -25,6 +31,7 @@ public class AtorService {
                 .naturalidade(obj.getNaturalidade())
                 .nome(obj.getNome())
                 .biografia(obj.getBiografia())
+                .filmes(obj.getFilmes().stream().map(filme -> filmeService.findById(filme.getId())).collect(Collectors.toList()))
                 .build();
         return repository.save(newObj);
     }
@@ -39,9 +46,9 @@ public class AtorService {
                 "Object not found! Id: " + id + ", Type: " + Ator.class.getName()));
     }
 
-    public List<Ator> findByFilmes(Integer id) {
-        return repository.findByFilmes(id);
-    }
+//    public List<Ator> findByFilmes(Integer id) {
+//        return repository.findByFilme(id);
+//    }
 
     public void deleteById(Integer id) {
         try {

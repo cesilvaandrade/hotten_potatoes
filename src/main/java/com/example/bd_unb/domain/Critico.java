@@ -1,10 +1,17 @@
 package com.example.bd_unb.domain;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Critico implements Serializable {
 
     private static final long serialVersionUID = 1L;

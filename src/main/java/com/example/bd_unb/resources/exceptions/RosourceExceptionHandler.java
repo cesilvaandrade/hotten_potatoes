@@ -1,7 +1,8 @@
 package com.example.bd_unb.resources.exceptions;
 
-import com.example.bd_unb.services.exceptions.DataIntegrityViolationException;
+
 import com.example.bd_unb.services.exceptions.ObjectNotFoundExcpetion;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,14 +1,16 @@
 package com.example.bd_unb.domain;
 
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Builder
 @Getter
-@NamedQueries({
-})
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class AvaliacaoCritica implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -1,7 +1,7 @@
 package com.example.bd_unb.resources;
 
-import com.example.bd_unb.domain.Ator;
-import com.example.bd_unb.services.AtorService;
+import com.example.bd_unb.domain.Diretor;
+import com.example.bd_unb.services.DiretorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,40 +10,41 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/ator")
+@RequestMapping(value = "/api/diretor")
 @CrossOrigin("*")
-public class AtorResource {
+public class DiretorResource {
 
     @Autowired
-    private AtorService service;
+    private DiretorService service;
 
     @PostMapping(value = "")
-    public ResponseEntity<Ator> insert( @Valid @RequestBody Ator obj) {
-        Ator newObj = service.insert( obj);
+    public ResponseEntity<Diretor> insert(@Valid @RequestBody Diretor obj) {
+        Diretor newObj = service.insert(obj);
         return ResponseEntity.ok().body(newObj);
     }
 
 //    @GetMapping(value = "/{id}")
-//    public ResponseEntity<List<Ator>> findByFilme(@PathVariable Integer id) {
-//        return ResponseEntity.ok().body(service.findByFilmes(id));
+//    public ResponseEntity<List<Diretor>> findByDiretor(@PathVariable Integer id) {
+//        return ResponseEntity.ok().body(service.findByDiretors(id));
 //    }
 
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Ator> deleteById(@PathVariable Integer id) {
+    public ResponseEntity<Diretor> deleteById(@PathVariable Integer id) {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Ator> updatePost(@PathVariable Integer id, @RequestBody Ator obj) {
+    public ResponseEntity<Diretor> updatePost(@PathVariable Integer id, @RequestBody Diretor obj) {
         return ResponseEntity.ok().body(service.update(id, obj));
     }
 
     @GetMapping(value = "")
-    public ResponseEntity<List<Ator>> findAll(){
+    public ResponseEntity<List<Diretor>> findAll(){
         return ResponseEntity.ok().body(service.findAll());
     }
-    
+
+
 }
