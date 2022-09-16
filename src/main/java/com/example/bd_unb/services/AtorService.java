@@ -27,9 +27,7 @@ public class AtorService {
 
         Filme filme = filmeRepository.findById(idFilme).orElse(null);
 
-
         Ator newObj = Ator.builder()
-                .altura(obj.getAltura())
                 .aniversario(obj.getAniversario())
                 .biografia(obj.getBiografia())
                 .naturalidade(obj.getNaturalidade())
@@ -71,7 +69,6 @@ public class AtorService {
         obj.setId(id);
         Ator newObj = Ator.builder()
                 .id(id)
-                .altura(obj.getAltura())
                 .aniversario(obj.getAniversario())
                 .biografia(obj.getBiografia())
                 .naturalidade(obj.getNaturalidade())

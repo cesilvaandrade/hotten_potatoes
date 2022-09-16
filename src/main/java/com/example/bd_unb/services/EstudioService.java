@@ -19,7 +19,6 @@ public class EstudioService {
 
     public Estudio insert(Estudio obj) {
         Estudio newObj = Estudio.builder()
-                .anoFundacao(obj.getAnoFundacao())
                 .nome(obj.getNome())
                 .pais(obj.getPais())
                 .presidente(obj.getPresidente())
@@ -53,7 +52,6 @@ public class EstudioService {
         obj.setId(id);
         Estudio newObj = Estudio.builder()
                 .id(id)
-                .anoFundacao(obj.getAnoFundacao())
                 .nome(obj.getNome())
                 .pais(obj.getPais())
                 .presidente(obj.getPresidente())

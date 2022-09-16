@@ -1,5 +1,6 @@
 package com.example.bd_unb.domain;
 
+import io.swagger.models.auth.In;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 
@@ -23,34 +24,35 @@ public class Filme implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "pais_de_origem")
     private String paisDeOrigem;
 
     private String sinopse;
 
     private String titulo;
 
+    @Column(name = "ano_estreia")
     private Integer anoEstreia;
 
-    private String classificao;
+    private String classificacao;
 
-    @Temporal(TemporalType.TIME)
-    private Date duracao;
+    private Integer duracao;
 
     private String bilheteria;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="ID_DIRETOR", nullable=false)
+    @ManyToOne()
+    @JoinColumn(name="id_diretor", nullable=false)
     private Diretor diretor ;
 
-    @OneToMany(mappedBy = "filme")
-    private List<AvaliacaoCritica> avaliacaoCriticas = new ArrayList<>();
+    @OneToMany(mappedBy = "filme" , cascade = CascadeType.ALL)
+    private List<AvaliacaoCritica> avaliacoesCriticas = new ArrayList<>();
 
 
     @ManyToMany(mappedBy = "filmes", cascade = CascadeType.ALL)
     private List<Ator> atores = new ArrayList();
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="ID_ESTUDIO", nullable=false)
+    @ManyToOne()
+    @JoinColumn(name="id_estudio", nullable=false)
     private Estudio estudio;
 
 

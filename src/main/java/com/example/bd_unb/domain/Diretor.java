@@ -31,7 +31,7 @@ public class Diretor implements Serializable {
     private Date aniversario;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "diretor")
+    @OneToMany(mappedBy = "diretor" , cascade = CascadeType.ALL)
     private List<Filme> filmes= new ArrayList<>();
 
 }

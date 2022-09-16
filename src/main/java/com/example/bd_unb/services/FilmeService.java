@@ -1,5 +1,6 @@
 package com.example.bd_unb.services;
 
+import com.example.bd_unb.DAO.H2JDBCUtils;
 import com.example.bd_unb.domain.Filme;
 import com.example.bd_unb.repositories.FilmeRepository;
 import com.example.bd_unb.services.exceptions.ObjectNotFoundExcpetion;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +28,7 @@ public class FilmeService {
         Filme newObj = Filme.builder()
                 .anoEstreia(obj.getAnoEstreia())
                 .bilheteria(obj.getBilheteria())
-                .classificao(obj.getClassificao())
+                .classificacao(obj.getClassificacao())
                 .duracao(obj.getDuracao())
                 .paisDeOrigem(obj.getPaisDeOrigem())
                 .titulo(obj.getTitulo())
@@ -52,12 +54,9 @@ public class FilmeService {
 //    }
 
     public void deleteById(Integer id) {
-        try {
-            repository.deleteById(id);
-        } catch (DataIntegrityViolationException e) {
-            throw new com.example.bd_unb.services.exceptions.DataIntegrityViolationException("Error to delete Filme");
-        }
+        repository.deleteById(id);
     }
+
 
     public Filme update(Integer id, Filme obj) {
         obj.setId(id);
@@ -65,13 +64,15 @@ public class FilmeService {
                 .id(id)
                 .anoEstreia(obj.getAnoEstreia())
                 .bilheteria(obj.getBilheteria())
-                .classificao(obj.getClassificao())
+                .classificacao(obj.getClassificacao())
                 .duracao(obj.getDuracao())
                 .paisDeOrigem(obj.getPaisDeOrigem())
                 .titulo(obj.getTitulo())
                 .sinopse(obj.getSinopse())
+                .diretor(diretorService.findById(obj.getDiretor().getId()))
+                .estudio(estudioService.findById(obj.getEstudio().getId()))
                 .build();
         return repository.save(newObj);
     }
-    
+
 }

@@ -23,7 +23,6 @@ public class CriticoService {
                 .aniversario(obj.getAniversario())
                 .avaliacao(obj.getAvaliacao())
                 .bibliografia(obj.getBibliografia())
-                .publicacoes(obj.getPublicacoes())
                 .build();
         return repository.save(newObj);
     }
@@ -58,7 +57,6 @@ public class CriticoService {
                 .aniversario(obj.getAniversario())
                 .avaliacao(obj.getAvaliacao())
                 .bibliografia(obj.getBibliografia())
-                .publicacoes(obj.getPublicacoes())
                 .build();
         return repository.save(newObj);
     }

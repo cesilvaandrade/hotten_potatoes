@@ -16,6 +16,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table
 public class Ator implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,15 +29,15 @@ public class Ator implements Serializable {
 
     private Date aniversario;
 
-    private BigDecimal altura;
 
     private String naturalidade;
 
     private String biografia;
 
-    @JsonIgnore
-	@ManyToMany
-	@JoinTable(name = "ATOR_FILME", joinColumns = @JoinColumn(name = "ID_AUTHOR"), inverseJoinColumns = @JoinColumn(name = "ID_ATOR"))
-    private List<Filme> filmes = new ArrayList<>();
+    private BigDecimal altura;
 
+    @JsonIgnore
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "ator_filme", joinColumns = @JoinColumn(name = "id_filme"), inverseJoinColumns = @JoinColumn(name = "id_ator"))
+    private List<Filme> filmes = new ArrayList<>();
 }

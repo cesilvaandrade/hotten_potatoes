@@ -28,7 +28,6 @@ public class Estudio implements Serializable {
 
     private String presidente;
 
-    private Integer anoFundacao;
 
     @JsonIgnore
     @OneToMany(mappedBy = "estudio")

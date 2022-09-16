@@ -23,10 +23,7 @@ public class DBService {
     private FilmeRepository filmeRepository;
 
     public void instantiateTestDataBase() {
-        filmeRepository.save(Filme.builder().titulo("filme")
-                .diretor(Diretor.builder().nome("diretor").build())
-                .estudio(Estudio.builder().nome("estudio").build())
-                .build());
+
     }
 
 }

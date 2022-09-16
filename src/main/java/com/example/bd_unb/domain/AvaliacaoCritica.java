@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table( name = "avaliacao_critica_filme")
 public class AvaliacaoCritica implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,18 +21,17 @@ public class AvaliacaoCritica implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String revista;
-
     private String descricao;
 
     private Integer nota;
 
-    @OneToOne(mappedBy = "avaliacao")
+    @OneToOne()
+    @JoinColumn(name = "id_critico" , referencedColumnName = "id")
     private Critico critico;
 
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name="ID_FILME", nullable=false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="id_filme")
     private Filme filme;
 
 }

@@ -31,7 +31,6 @@ public class AvaliacaoCriticaService {
         AvaliacaoCritica newObj = AvaliacaoCritica.builder()
                 .descricao(obj.getDescricao())
                 .nota(obj.getNota())
-                .revista(obj.getRevista())
                 .filme(filmeRepository.findById(idFilme).orElse(null))
                 .critico(obj.getCritico() == null ? null : criticoRepository.findById(obj.getCritico().getId()).orElse(null))
                 .build();
@@ -66,7 +65,6 @@ public class AvaliacaoCriticaService {
                 .id(id)
                 .descricao(obj.getDescricao())
                 .nota(obj.getNota())
-                .revista(obj.getRevista())
                 .filme(avaliacaoCritica.getFilme())
                 .critico(avaliacaoCritica.getCritico())
                 .build();
