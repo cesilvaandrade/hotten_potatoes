@@ -1,14 +1,11 @@
 package com.example.bd_unb.services;
 
-import com.example.bd_unb.DAO.H2JDBCUtils;
 import com.example.bd_unb.domain.Filme;
 import com.example.bd_unb.repositories.FilmeRepository;
 import com.example.bd_unb.services.exceptions.ObjectNotFoundExcpetion;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +32,7 @@ public class FilmeService {
                 .sinopse(obj.getSinopse())
                 .diretor(diretorService.findById(obj.getDiretor().getId()))
                 .estudio(estudioService.findById(obj.getEstudio().getId()))
+                .capa(obj.getCapa())
                 .build();
         return repository.save(newObj);
     }
@@ -60,6 +58,7 @@ public class FilmeService {
 
     public Filme update(Integer id, Filme obj) {
         obj.setId(id);
+
         Filme newObj = Filme.builder()
                 .id(id)
                 .anoEstreia(obj.getAnoEstreia())
@@ -71,6 +70,7 @@ public class FilmeService {
                 .sinopse(obj.getSinopse())
                 .diretor(diretorService.findById(obj.getDiretor().getId()))
                 .estudio(estudioService.findById(obj.getEstudio().getId()))
+                .capa(obj.getCapa())
                 .build();
         return repository.save(newObj);
     }

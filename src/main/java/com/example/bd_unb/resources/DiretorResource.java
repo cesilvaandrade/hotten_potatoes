@@ -23,11 +23,6 @@ public class DiretorResource {
         return ResponseEntity.ok().body(newObj);
     }
 
-//    @GetMapping(value = "/{id}")
-//    public ResponseEntity<List<Diretor>> findByDiretor(@PathVariable Integer id) {
-//        return ResponseEntity.ok().body(service.findByDiretors(id));
-//    }
-
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Diretor> deleteById(@PathVariable Integer id) {

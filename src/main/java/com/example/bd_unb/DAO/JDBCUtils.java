@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class H2JDBCUtils {
+public class JDBCUtils {
 
     private static String jdbcURL = "jdbc:mysql://localhost:3306/rotten_potatoes?allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8&useLegacyDatetimeCode=true&createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=UTC";
     private static String jdbcUsername = "root";

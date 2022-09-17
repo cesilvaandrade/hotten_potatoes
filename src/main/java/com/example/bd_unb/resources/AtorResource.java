@@ -23,11 +23,6 @@ public class AtorResource {
         return ResponseEntity.ok().body(newObj);
     }
 
-//    @GetMapping(value = "/{id}")
-//    public ResponseEntity<List<Ator>> findByFilme(@PathVariable Integer id) {
-//        return ResponseEntity.ok().body(service.findByFilmes(id));
-//    }
-
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Ator> deleteById(@PathVariable Integer id) {

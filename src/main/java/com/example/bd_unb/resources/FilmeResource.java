@@ -23,12 +23,6 @@ public class FilmeResource {
         return ResponseEntity.ok().body(newObj);
     }
 
-//    @GetMapping(value = "/{id}")
-//    public ResponseEntity<List<Filme>> findByFilme(@PathVariable Integer id) {
-//        return ResponseEntity.ok().body(service.findByFilmes(id));
-//    }
-
-
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Filme> deleteById(@PathVariable Integer id) {
         service.deleteById(id);
@@ -45,5 +39,11 @@ public class FilmeResource {
     public ResponseEntity<List<Filme>> findAll(){
         return ResponseEntity.ok().body(service.findAll());
     }
-    
+
+    @GetMapping(value = "/{id}")
+	public ResponseEntity<Filme> findById(@PathVariable Integer id) {
+		Filme obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
+	}
+
 }

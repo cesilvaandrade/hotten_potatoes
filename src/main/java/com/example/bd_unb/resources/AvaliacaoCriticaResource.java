@@ -22,11 +22,6 @@ public class AvaliacaoCriticaResource {
         return ResponseEntity.ok().body(newObj);
     }
 
-//    @GetMapping(value = "/{id}")
-//    public ResponseEntity<List<AvaliacaoCritica>> findByFilme(@PathVariable Integer id) {
-//        return ResponseEntity.ok().body(service.findByFilmes(id));
-//    }
-
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<AvaliacaoCritica> deleteById(@PathVariable Integer id) {

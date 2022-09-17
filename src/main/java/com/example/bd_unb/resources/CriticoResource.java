@@ -22,11 +22,6 @@ public class CriticoResource {
         return ResponseEntity.ok().body(newObj);
     }
 
-//    @GetMapping(value = "/{id}")
-//    public ResponseEntity<List<Critico>> findByFilme(@PathVariable Integer id) {
-//        return ResponseEntity.ok().body(service.findByFilmes(id));
-//    }
-
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Critico> deleteById(@PathVariable Integer id) {

@@ -23,11 +23,6 @@ public class EstudioResource {
         return ResponseEntity.ok().body(newObj);
     }
 
-//    @GetMapping(value = "/{id}")
-//    public ResponseEntity<List<Estudio>> findByEstudio(@PathVariable Integer id) {
-//        return ResponseEntity.ok().body(service.findByEstudios(id));
-//    }
-
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Estudio> deleteById(@PathVariable Integer id) {
