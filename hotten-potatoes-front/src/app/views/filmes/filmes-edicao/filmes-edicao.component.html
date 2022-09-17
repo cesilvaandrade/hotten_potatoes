@@ -1,0 +1,102 @@
+<form>
+    <h1 *ngIf="!filme.id">Criar novo filme</h1>
+    <h1 *ngIf="filme.id">Editar</h1>
+
+    <div fxLayout="row" fxLayoutGap="20px" style="alignment: center; text-align: center; padding-bottom: 20px" >
+        <img width="400px" [src]="filme.capa" *ngIf="filme.capa" />
+    </div>
+
+    <input #imageInput
+           type="file"
+           hidden="true"
+           accept=".jpg"
+           (change)="processFile(imageInput)">
+    <button *ngIf="!filme.capa" mat-flat-button color="primary" (click)="imageInput.click()">Escolha a imagem de capa</button>
+
+
+    <mat-form-field class="form">
+        <mat-label>Titulo</mat-label>
+        <input matInput [(ngModel)]="filme.titulo" type="text" name="titulo">
+    </mat-form-field>
+
+
+    <mat-form-field class="form">
+        <mat-label>Ano de Estreia</mat-label>
+        <input matInput [(ngModel)]="filme.anoEstreia" type="text" name="estreia">
+    </mat-form-field>
+
+
+    <mat-form-field class="form">
+        <mat-label>País de origem</mat-label>
+        <input matInput [(ngModel)]="filme.paisDeOrigem" type="text" name="pais">
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Bilheteria</mat-label>
+        <input matInput [(ngModel)]="filme.bilheteria" type="text" name="bilheteria">
+    </mat-form-field>
+
+
+    <mat-form-field class="form">
+        <mat-label>Classificação</mat-label>
+        <input matInput [(ngModel)]="filme.classificacao" type="text" name="classifica">
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Duração</mat-label>
+        <input matInput [(ngModel)]="filme.duracao" type="text" name="duracao">
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Sinopse</mat-label>
+        <textarea matInput [(ngModel)]="filme.sinopse" type="text" name="sinopse"></textarea>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutGap="20px" *ngIf="!filme.id">
+        <mat-form-field class="form">
+            <mat-label>Diretor</mat-label>
+            <mat-select name="diretor" [(ngModel)]="filme.diretor.id" >
+                <mat-option value="1">Christopher Nolan</mat-option>
+                <mat-option value="2">Joe Russo</mat-option>
+                <mat-option value="3">Matt Shakman</mat-option>
+                <mat-option value="4">Jonathan Kolia</mat-option>
+                <mat-option value="5">Taika Waititi</mat-option>
+                <mat-option value="6">Andy Muschietti</mat-option>
+                <mat-option value="7">Otto Bathurst</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form">
+            <mat-label>Estudio</mat-label>
+            <mat-select [(value)]="filme.estudio.id" >
+                <mat-option value="1">Marvel Studios</mat-option>
+                <mat-option value="2">Legendary Pictures</mat-option>
+                <mat-option value="3">20th Century Studios</mat-option>
+                <mat-option value="4">Warner Bros. Television Studios</mat-option>
+                <mat-option value="5">BBC Studios</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </div>
+
+
+    <div fxLayout="row" fxLayoutGap="20px" *ngIf="filme.id">
+        <mat-form-field class="form">
+            <mat-label>Estudio</mat-label>
+            <input matInput [(ngModel)]="filme.estudio.nome"  type="text" name="estudio">
+        </mat-form-field>
+
+        <mat-form-field class="form">
+            <mat-label>Diretor</mat-label>
+            <input matInput [(ngModel)]="filme.diretor.nome" type="text" name="diretor">
+        </mat-form-field>
+
+    </div>
+
+
+
+
+    <div class="buttons">
+        <button mat-stroked-button (click)="create()" color="primary">CREATE</button>
+        <button mat-stroked-button (click)="cancel()" color="warn">CANCEL</button>
+    </div>
+</form>
